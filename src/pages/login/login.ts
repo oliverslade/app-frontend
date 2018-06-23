@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AuthService } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -18,9 +12,11 @@ export class LoginPage {
   loginForm: FormGroup;
   loginError: string;
   loading: Loading;
+  registerCredentials = { email: '', password: '' };
 
   constructor(
-    public navCtrl: NavController,
+    public nav: NavController,
+    private auth: AuthService,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     public formBuilder: FormBuilder) {
@@ -35,7 +31,21 @@ export class LoginPage {
   }
 
   public createAccount() {
-    this.navCtrl.push('RegisterPage');
+    this.nav.push('RegisterPage');
+  }
+
+  public login() {
+    this.showLoading()
+    this.auth.login(this.registerCredentials).subscribe(allowed => {
+      if (allowed) {        
+        this.nav.setRoot('HomePage');
+      } else {
+        this.showError("Access Denied");
+      }
+    },
+      error => {
+        this.showError(error);
+      });
   }
   
   showLoading() {
