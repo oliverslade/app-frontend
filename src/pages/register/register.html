@@ -33,6 +33,10 @@
           <ion-input type="password" placeholder="Password" formControlName="password" required></ion-input>
         </ion-item>
 
+        <div *ngIf="!registerUser.controls.password.valid && registerUser.controls.password.dirty">
+            <small class="danger">It should be at least 6 characters</small>
+          </div>
+
         <ion-item>
           <ion-input type="password" placeholder="Confirm password" formControlName="confirmPassword" required></ion-input>
         </ion-item>
@@ -42,10 +46,13 @@
         </div>
         
       </ion-list>
+
+      <div class="form-error">{{signupError}}</div>
   
       <button ion-button class="submit-btn" full type="submit" [disabled]="!registerUser.valid">Register</button>
 
-      
     </form>
+
+
   </div>
 </ion-content>

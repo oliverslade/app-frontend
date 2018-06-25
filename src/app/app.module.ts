@@ -7,6 +7,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { AuthService } from '../providers/auth-service/auth-service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+import { ValidatorProvider } from '../providers/validator/validator';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,9 @@ import { AuthService } from '../providers/auth-service/auth-service';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -24,7 +30,8 @@ import { AuthService } from '../providers/auth-service/auth-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService,
+    ValidatorProvider
   ]
 })
 export class AppModule {}

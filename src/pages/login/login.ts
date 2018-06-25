@@ -8,6 +8,7 @@ import { AuthService } from '../../providers/auth-service/auth-service';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
   loginForm: FormGroup;
   loginError: string;
@@ -17,43 +18,19 @@ export class LoginPage {
   constructor(
     public nav: NavController,
     private auth: AuthService,
+    public formBuilder: FormBuilder,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController,
-    public formBuilder: FormBuilder) {
+    private loadingCtrl: LoadingController) {
+
       this.loginForm = formBuilder.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]]
       });
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-  }
-
-  public createAccount() {
-    this.nav.push('RegisterPage');
-  }
-
-  public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
-        this.nav.setRoot('HomePage');
-      } else {
-        this.showError("Access Denied");
-      }
-    },
-      error => {
-        this.showError(error);
-      });
-  }
-  
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      dismissOnPageChange: true
-    });
-    this.loading.present();
   }
 
   showError(text) {
@@ -66,5 +43,48 @@ export class LoginPage {
     });
     alert.present();
   }
+
+  public createAccount() {
+    console.log('Create Account');
+    this.nav.push('RegisterPage');
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
+
+  public login() {
+    this.showLoading()
+
+    let data = this.loginForm.value;
+
+		if (!data.email) {
+			return;
+    }
+    
+    let credentials = { 
+      email: data.email,
+      password: data.password
+    };
+
+    this.auth.signInWithEmail(credentials).then(
+      () => this.nav.setRoot('HomePage'),
+      error => this.showError(error)
+    );
+  }
+
+  // loginWithGoogle() {
+  //   this.auth.signInWithGoogle()
+  //     .then(
+  //       () => this.nav.setRoot('HomePage'),
+  //       error => console.log(error.message)
+  //     );
+  // }
+
+
 
 }
