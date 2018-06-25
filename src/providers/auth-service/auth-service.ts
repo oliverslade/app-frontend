@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -18,20 +17,6 @@ export class AuthService {
         this.user = user;
       });
   }
- 
-  // public login(credentials) {
-  //   if (credentials.email === null || credentials.password === null) {
-  //     return Observable.throw("Please insert credentials");
-  //   } else {
-  //     return Observable.create(observer => {
-  //       // At this point make a request to your backend to make a real check!
-  //       let access = (credentials.password === "pass" && credentials.email === "email");
-  //       this.currentUser = new User('Rob', 'rob@gmail.com');
-  //       observer.next(access);
-  //       observer.complete();
-  //     });
-  //   }
-  // }
  
   signInWithEmail(credentials) {
 		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
@@ -54,39 +39,28 @@ export class AuthService {
     return this.user && this.user.email;
   }
  
-  // signInWithGoogle() {
-	// 	console.log('Sign in with google');
-	// 	return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
-  // }
+  signInWithGoogle(): Promise<any> {
+		console.log('Sign in with google');
+		return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
+  }
 
-  // private oauthSignIn(provider: AuthProvider) {
-  //   if (!(<any>window).cordova) {
-  //     return this.afAuth.auth.signInWithPopup(provider)
-  //       .then((result) => {
-  //         let token = result.credential.accessToken;
-  //         this.user = result.user;
-  //         console.log('Google signin: ', token, this.user);
-  //       }).catch(function(error) {
-  //         // Handle Errors here.
-  //         alert(error.message);
-  //       });
-  //   } else {
-  //     return this.afAuth.auth.signInWithRedirect(provider)
-  //     .then(() => {
-  //       return this.afAuth.auth.getRedirectResult().then( result => {
-  //         // This gives you a Google Access Token.
-  //         // You can use it to access the Google API.
-  //         let token = result.credential.accessToken;
-  //         // The signed-in user info.
-  //         let user = result.user;
-  //         console.log(token, user);
-  //       }).catch(function(error) {
-  //         // Handle Errors here.
-  //         alert(error.message);
-  //       });
-  //     });
-  //   }
-  // }
+  private oauthSignIn(provider: AuthProvider) {
+
+      return this.afAuth.auth.signInWithRedirect(provider)
+      .then(() => {
+        return this.afAuth.auth.getRedirectResult().then( result => {
+          // This gives you a Google Access Token.
+          // You can use it to access the Google API.
+          let creds = result.credential;
+          // The signed-in user info.
+          let user = result.user;
+          console.log('Creds : user', creds, user);
+        }).catch(function(error) {
+          // Handle Errors here.
+          alert(error.message);
+        });
+      });
+  }
 
  
 }

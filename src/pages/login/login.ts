@@ -77,14 +77,12 @@ export class LoginPage {
     );
   }
 
-  // loginWithGoogle() {
-  //   this.auth.signInWithGoogle()
-  //     .then(
-  //       () => this.nav.setRoot('HomePage'),
-  //       error => console.log(error.message)
-  //     );
-  // }
-
-
+  loginWithGoogle() {
+    this.auth.signInWithGoogle()
+      .then(
+        () => this.nav.setRoot('HomePage'),
+        error => console.log(error.message)
+      );
+  }
 
 }
