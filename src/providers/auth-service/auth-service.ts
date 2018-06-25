@@ -41,7 +41,18 @@ export class AuthService {
   signUp(credentials) {
     return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
   }
+
+  signOut(): Promise<void> {
+    return this.afAuth.auth.signOut();
+  }
+
+  authenticated(): boolean {
+    return this.user !== null;
+  }
  
+  getEmail() {
+    return this.user && this.user.email;
+  }
  
   // signInWithGoogle() {
 	// 	console.log('Sign in with google');
@@ -77,10 +88,5 @@ export class AuthService {
   //   }
   // }
 
-  public logout() {
-    return Observable.create(observer => {
-      observer.next(true);
-      observer.complete();
-    });
-  }
+ 
 }
