@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TransactionsApiProvider {
 
-  data = [{"amount":250,"date":"01/07/2018","account":"My Current Account","type":"Direct Debit","description":"Gas and Electric"},{"amount":3.99,"date":"25/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"Lunch"},{"amount":9.99,"date":"24/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"New hat"},{"amount":20,"date":"23/06/2018","account":"My Current Account","type":"Transfer","description":"Splitting dinner with Kate"},{"amount":64.54,"date":"23/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"Weekly groceries"},{"amount":200,"date":"20/06/2018","account":"My Current Account","type":"Transfer","description":"Monthly savings"},{"amount":10,"date":"19/06/2018","account":"My Current Account","type":"ATM Withdrawal","description":"None"},{"amount":45.34,"date":"15/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"Theatre Tickets"}];
+  data;
 
   apiUrl = 'http://35.234.115.241/';
   constructor(public http: HttpClient) {
@@ -19,7 +19,9 @@ export class TransactionsApiProvider {
 
   getTransactions() {
     return new Promise(resolve => {
-      this.http.get(this.apiUrl + 'transactions').subscribe(data => {
+      this.http.get('http://35.234.115.241/transactions').subscribe(data => {
+        console.log('Transaction Data: ', data, typeof(data));
+        this.data = data;
         resolve(data);
       }, err => {
         console.log(err);
@@ -30,6 +32,18 @@ export class TransactionsApiProvider {
   getTransactionById(id) {
     console.log("Trans API: ", id);
     return this.data[id];
+  }
+
+  getUserDetails() {
+    console.log("Trans API: getUser");
+    return new Promise(resolve => {
+      this.http.get('http://35.234.82.10/account').subscribe(data => {
+        //console.log('User Data: ', data, typeof(data));
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
 }
