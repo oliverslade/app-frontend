@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
+import { TransactionsApiProvider } from '../../providers/transactions-api/transactions-api';
 
 @IonicPage()
 @Component({
@@ -11,9 +12,22 @@ export class HomePage {
 
   data = [{"amount":250,"date":"01/07/2018","account":"My Current Account","type":"Direct Debit","description":"Gas and Electric"},{"amount":3.99,"date":"25/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"Lunch"},{"amount":9.99,"date":"24/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"New hat"},{"amount":20,"date":"23/06/2018","account":"My Current Account","type":"Transfer","description":"Splitting dinner with Kate"},{"amount":64.54,"date":"23/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"Weekly groceries"},{"amount":200,"date":"20/06/2018","account":"My Current Account","type":"Transfer","description":"Monthly savings"},{"amount":10,"date":"19/06/2018","account":"My Current Account","type":"ATM Withdrawal","description":"None"},{"amount":45.34,"date":"15/06/2018","account":"My Current Account","type":"Debit Card Transaction","description":"Theatre Tickets"}];
 
+  transactions;
   constructor(
     private auth: AuthService,
-    public nav: NavController) {
+    public nav: NavController,
+    public transactionApi: TransactionsApiProvider) {
+
+      this.getTransactions();
+
+  }
+
+  getTransactions() {
+    this.transactionApi.getTransactions()
+    .then(data => {
+      this.transactions = data;
+      console.log(this.transactions);
+    });
   }
 
   ionViewCanEnter(): Boolean {
