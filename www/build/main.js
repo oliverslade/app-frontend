@@ -491,7 +491,7 @@ var MyApp = /** @class */ (function () {
         this.rootPage = 'LoginPage';
     };
     MyApp.prototype.openPage = function (page) {
-        if (page.title === 'Account') {
+        if (page.title === 'Dashboard') {
             this.nav.popToRoot();
         }
         else {
