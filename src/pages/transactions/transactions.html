@@ -16,8 +16,8 @@
 <ion-content padding>
     <ion-list inset>
         <button ion-item *ngFor="let item of transactions; let i = index" (click)="itemSelected(i)">
-            <h2>{{ item.description }}</h2>
-            <p>£{{ item.amount }}</p>
+            <h2>£ -{{ item.amount }}</h2>
+            <p>{{ item.description }} </p>
         </button> 
       </ion-list>
 </ion-content>
