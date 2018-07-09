@@ -7,16 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>transaction-detail</ion-title>
+    <ion-title>Transaction details</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  £{{ transaction.amount }} <br>
-  {{ transaction.date }} <br>
-  {{ transaction.account }} <br>
-  {{ transaction.type }} <br>
-  {{ transaction.description }}
+  <ion-card>
+      <ion-card-header>
+        {{ transaction.description }}
+      </ion-card-header>
+      <ion-card-content>
+        <span style="font-size:3em;">£{{ transaction.amount }}</span><br>
+        {{ transaction.account }}<br>
+        {{ transaction.type }}<br>
+        {{ transaction.date }} 
+      </ion-card-content>
+    </ion-card>
 </ion-content>

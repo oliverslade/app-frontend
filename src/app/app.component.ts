@@ -31,9 +31,8 @@ export class MyApp {
       this.splashScreen.hide();
       this.pages = [
         { title: 'Account', component: 'HomePage' },
-        { title: 'Contacts', component: 'TransactionsPage' },
-        { title: 'Transactions', component: 'TransactionsPage' },
-        { title: 'Spending Summary', component: 'TransactionsPage' }
+        { title: 'Contacts', component: 'ContactsPage' },
+        { title: 'Transactions', component: 'TransactionsPage' }
       ];
     });
 
@@ -42,7 +41,7 @@ export class MyApp {
   }
 
   openPage(page) {
-    if(page.title === 'Home'){
+    if(page.title === 'Account'){
       this.nav.popToRoot();
     } else {
       this.nav.push(page.component);

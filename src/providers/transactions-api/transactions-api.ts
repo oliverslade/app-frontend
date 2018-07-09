@@ -58,6 +58,17 @@ export class TransactionsApiProvider {
     });
   }
 
+  getContacts() {
+    console.log("Trans API: getContacts");
+    return new Promise(resolve => {
+      this.http.get('http://35.198.113.119/contacts').subscribe(data => {
+        //console.log('User Data: ', data, typeof(data));
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
   
 
 }

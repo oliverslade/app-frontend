@@ -10,7 +10,7 @@
 
 <ion-content padding>
   
-  <div *ngFor="let user of userDetails;">
+  <div *ngFor="let user of userDetails">
       <h1>Welcome {{ user.fullname }}!</h1>
 
       <h2>Balance: £{{ user.balance }}</h2>
@@ -19,7 +19,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-6>
-        <button ion-button block icon-end>
+        <button ion-button block icon-end (click)="viewContacts()">
           Pay Contacts
           <ion-icon name="ios-arrow-forward"></ion-icon>
         </button>
