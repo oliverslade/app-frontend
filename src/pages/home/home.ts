@@ -21,16 +21,7 @@ export class HomePage {
     public transactionApi: TransactionsApiProvider) {
 
       this.getUserDetails();
-      this.getTransactions();
 
-  }
-
-  getTransactions() {
-    this.transactionApi.getTransactions()
-    .then(data => {
-      this.transactions = data;
-      console.log(typeof(data));
-    });
   }
 
   getUserDetails() {
@@ -50,11 +41,6 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
     // Grab data - http://35.234.115.241/transactions
     
-  }
-
-  itemSelected(item) {
-    console.log(item);
-    this.nav.push('TransactionDetailPage', { id: item })
   }
 
   public logout() {

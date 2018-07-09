@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AuthService } from '../providers/auth-service/auth-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,11 +11,12 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:String = 'LoginPage';
 
+  pages: Array<{title: string, component: any}>;
+
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen,
-    private auth: AuthService) {
+    public splashScreen: SplashScreen) {
 
       platform.ready().then(() => {
         this.initializeApp();
@@ -29,23 +29,24 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.pages = [
+        { title: 'Account', component: 'HomePage' },
+        { title: 'Contacts', component: 'TransactionsPage' },
+        { title: 'Transactions', component: 'TransactionsPage' },
+        { title: 'Spending Summary', component: 'TransactionsPage' }
+      ];
     });
 
-    // this.auth.afAuth.authState
-    // .subscribe(
-    //   user => {
-    //     if (user) {
-    //       this.rootPage = 'HomePage';
-    //     } else {
-    //       this.rootPage = 'LoginPage';
-    //     }
-    //   },
-    //   () => {
-    //     this.rootPage = 'LoginPage';
-    //   }
-    // );
-
     this.rootPage = 'LoginPage';
+
+  }
+
+  openPage(page) {
+    if(page.title === 'Home'){
+      this.nav.popToRoot();
+    } else {
+      this.nav.push(page.component);
+    }   
   }
 
 }

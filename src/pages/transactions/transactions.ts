@@ -28,7 +28,7 @@ export class TransactionsPage {
     this.transactionApi.getTransactions()
     .then(data => {
       this.transactions = data;
-      console.log(typeof(data));
+      console.log(this.transactions);
     });
   }
 
