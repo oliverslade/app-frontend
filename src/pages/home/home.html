@@ -32,5 +32,18 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  
+  <h2>Summary</h2>
+
+  <ion-list>
+    <ion-item *ngFor="let data of accountSummary;">
+      {{data.type}}: <span style="float:right; font-size:1.5em;">£{{data.total}}</span>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block icon-end (click)="viewTransactions()">
+    View all
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
 
 </ion-content>

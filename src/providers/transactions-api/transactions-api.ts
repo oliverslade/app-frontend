@@ -46,4 +46,18 @@ export class TransactionsApiProvider {
     });
   }
 
+  getAccountSummary() {
+    console.log("Trans API: getAccountSummary");
+    return new Promise(resolve => {
+      this.http.get('http://35.234.115.241/summary').subscribe(data => {
+        //console.log('User Data: ', data, typeof(data));
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+  
+
 }
