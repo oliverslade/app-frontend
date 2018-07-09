@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { TransactionsApiProvider } from '../../providers/transactions-api/transactions-api';
+
+import { PaymentPage } from '../payment/payment';
 
 @IonicPage()
 @Component({
@@ -12,21 +14,26 @@ export class ContactsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public transactionApi: TransactionsApiProvider) {
-      this.getContacts();
+    public transactionApi: TransactionsApiProvider,
+    public modalCtrl: ModalController) {
+      this.getContact();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactsPage');
   }
 
-
-  getContacts() {
+  
+  getContact() {
     this.transactionApi.getContacts()
     .then(data => {
       this.contacts = data;
-      console.log(this.contacts);
+      // console.log(this.contacts);
     });
+  }
+
+  payContact(id) {
+    const modal = this.modalCtrl.create(PaymentPage, {id: id});
+    modal.present();
   }
 
 }

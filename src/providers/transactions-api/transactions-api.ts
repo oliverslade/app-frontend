@@ -11,6 +11,7 @@ import { Injectable } from '@angular/core';
 export class TransactionsApiProvider {
 
   data;
+  contacts;
 
   apiUrl = 'http://35.234.115.241/';
   constructor(public http: HttpClient) {
@@ -30,12 +31,10 @@ export class TransactionsApiProvider {
   }
 
   getTransactionById(id) {
-    console.log("Trans API: ", id);
     return this.data[id];
   }
 
   getUserDetails() {
-    console.log("Trans API: getUser");
     return new Promise(resolve => {
       this.http.get('http://35.234.82.10/account').subscribe(data => {
         //console.log('User Data: ', data, typeof(data));
@@ -47,7 +46,6 @@ export class TransactionsApiProvider {
   }
 
   getAccountSummary() {
-    console.log("Trans API: getAccountSummary");
     return new Promise(resolve => {
       this.http.get('http://35.234.115.241/summary').subscribe(data => {
         //console.log('User Data: ', data, typeof(data));
@@ -59,15 +57,18 @@ export class TransactionsApiProvider {
   }
 
   getContacts() {
-    console.log("Trans API: getContacts");
     return new Promise(resolve => {
       this.http.get('http://35.198.113.119/contacts').subscribe(data => {
-        //console.log('User Data: ', data, typeof(data));
+        this.contacts = data;
         resolve(data);
       }, err => {
         console.log(err);
       });
     });
+  }
+
+  getContactById(id) {
+    return this.contacts[id];
   }
   
 

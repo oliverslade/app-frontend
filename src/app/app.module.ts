@@ -15,9 +15,12 @@ import { environment } from '../environments/environment';
 import { ValidatorProvider } from '../providers/validator/validator';
 import { TransactionsApiProvider } from '../providers/transactions-api/transactions-api';
 
+import { PaymentPage } from '../pages/payment/payment';
+
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    PaymentPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { TransactionsApiProvider } from '../providers/transactions-api/transacti
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    PaymentPage
   ],
   providers: [
     StatusBar,

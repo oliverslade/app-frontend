@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 693:
+/***/ 694:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(702);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,14 @@ var LoginPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 700:
+/***/ 702:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(351);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -122,7 +122,7 @@ var LoginPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-login',template:/*ion-inline-start:"/Users/robert.lavender/http/ionic/hsbc-app/src/pages/login/login.html"*/'<ion-content class="login-content" padding>\n  <div>\n    <img src = "https://josannecassar.com/wp-content/uploads/2018/01/09-HSBC-Logo-2018-456x250.jpg">\n  </div>\n\n  <div class="login-box">\n    \n    <form (ngSubmit)="login()" [formGroup]="loginForm">\n\n      <ion-list inset>\n        \n        <ion-item>\n          <ion-input type="text" placeholder="Email" formControlName="email" required></ion-input>\n        </ion-item>\n\n        <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">\n          <small class="danger">It should be a valid email</small>\n        </div>\n        \n        <ion-item>\n          <ion-input type="password" placeholder="Password" formControlName="password" required></ion-input>\n        </ion-item>\n\n        <div *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">\n            <small class="danger">It should be at least 6 characters</small>\n          </div>\n        \n      </ion-list>\n  \n      <div class="form-error">{{loginError}}</div>\n\n      <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.valid">Login</button>\n\n      \n    </form>\n\n    <ion-list padding>\n\n        <div class="login-footer">\n            <p>\n              <a href="#">Forgot password?</a>\n              You can reset your password here\n            </p>\n        </div>\n\n    </ion-list>\n\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/robert.lavender/http/ionic/hsbc-app/src/pages/login/login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */],

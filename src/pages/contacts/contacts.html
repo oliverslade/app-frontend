@@ -15,14 +15,27 @@
 
 <ion-content padding>
 
-    <ion-card *ngFor="let contact of contacts">
+    <!-- <ion-card *ngFor="let contact of contacts; let i = index;">
       <ion-card-header>
         {{contact.fullname}}
       </ion-card-header>
       <ion-card-content>
-        Account: {{contact.account_number}}<br>
-        Sort code: {{contact.sortcode}}
+
+        <button ion-button icon-end (click)="payContact(i)">
+          Pay
+          <ion-icon name="cash"></ion-icon>
+        </button>
+
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
+
+    <ion-list> 
+      <ion-item *ngFor="let contact of contacts; let i = index;">
+          {{contact.fullname}}
+        <button ion-button item-end (click)="payContact(i)">
+          Pay
+        </button>
+      </ion-item>
+    </ion-list>
 
 </ion-content>
