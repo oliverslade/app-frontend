@@ -15,7 +15,6 @@ export class PaymentPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public transactionApi: TransactionsApiProvider) {
-      console.log(this.navParams.get('id'));
       this.contact = this.transactionApi.getContactById(this.navParams.get('id'));
   }
 

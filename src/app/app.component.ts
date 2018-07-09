@@ -30,7 +30,8 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.pages = [
-        { title: 'Account', component: 'HomePage' },
+        { title: 'Dashboard', component: 'HomePage' },
+        { title: 'Account', component: 'AccountPage' },
         { title: 'Contacts', component: 'ContactsPage' },
         { title: 'Transactions', component: 'TransactionsPage' }
       ];
@@ -41,7 +42,7 @@ export class MyApp {
   }
 
   openPage(page) {
-    if(page.title === 'Account'){
+    if(page.title === 'Dashboard'){
       this.nav.popToRoot();
     } else {
       this.nav.push(page.component);

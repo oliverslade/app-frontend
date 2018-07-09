@@ -21,7 +21,7 @@ export class TransactionsApiProvider {
   getTransactions() {
     return new Promise(resolve => {
       this.http.get('http://35.234.115.241/transactions').subscribe(data => {
-        console.log('Transaction Data: ', data, typeof(data));
+        // console.log('Transaction Data: ', data, typeof(data));
         this.data = data;
         resolve(data);
       }, err => {

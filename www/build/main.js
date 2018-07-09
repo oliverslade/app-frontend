@@ -1,4 +1,4 @@
-webpackJsonp([8],{
+webpackJsonp([9],{
 
 /***/ 151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -34,7 +34,7 @@ var TransactionsApiProvider = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve) {
             _this.http.get('http://35.234.115.241/transactions').subscribe(function (data) {
-                console.log('Transaction Data: ', data, typeof (data));
+                // console.log('Transaction Data: ', data, typeof(data));
                 _this.data = data;
                 resolve(data);
             }, function (err) {
@@ -115,10 +115,14 @@ webpackEmptyAsyncContext.id = 162;
 var map = {
 	"../pages/about-us/about-us.module": [
 		691,
+		7
+	],
+	"../pages/account/account.module": [
+		692,
 		6
 	],
 	"../pages/contacts/contacts.module": [
-		692,
+		694,
 		5
 	],
 	"../pages/home/home.module": [
@@ -126,23 +130,23 @@ var map = {
 		4
 	],
 	"../pages/login/login.module": [
-		694,
+		695,
 		3
 	],
 	"../pages/payment/payment.module": [
-		695,
-		7
+		696,
+		8
 	],
 	"../pages/register/register.module": [
-		696,
+		697,
 		2
 	],
 	"../pages/transaction-detail/transaction-detail.module": [
-		697,
+		698,
 		1
 	],
 	"../pages/transactions/transactions.module": [
-		698,
+		699,
 		0
 	]
 };
@@ -267,7 +271,6 @@ var PaymentPage = /** @class */ (function () {
         this.navParams = navParams;
         this.viewCtrl = viewCtrl;
         this.transactionApi = transactionApi;
-        console.log(this.navParams.get('id'));
         this.contact = this.transactionApi.getContactById(this.navParams.get('id'));
     }
     PaymentPage.prototype.ionViewDidLoad = function () {
@@ -401,8 +404,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/about-us/about-us.module#AboutUsPageModule', name: 'AboutUsPage', segment: 'about-us', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/contacts/contacts.module#ContactsPageModule', name: 'ContactsPage', segment: 'contacts', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/account/account.module#AccountPageModule', name: 'AccountPage', segment: 'account', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/contacts/contacts.module#ContactsPageModule', name: 'ContactsPage', segment: 'contacts', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/payment/payment.module#PaymentPageModule', name: 'PaymentPage', segment: 'payment', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
@@ -478,7 +482,8 @@ var MyApp = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
             _this.pages = [
-                { title: 'Account', component: 'HomePage' },
+                { title: 'Dashboard', component: 'HomePage' },
+                { title: 'Account', component: 'AccountPage' },
                 { title: 'Contacts', component: 'ContactsPage' },
                 { title: 'Transactions', component: 'TransactionsPage' }
             ];
