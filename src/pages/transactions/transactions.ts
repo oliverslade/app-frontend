@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { TransactionsApiProvider } from '../../providers/transactions-api/transactions-api';
 
 /**
@@ -20,24 +20,29 @@ export class TransactionsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public transactionApi: TransactionsApiProvider) {
+    public transactionApi: TransactionsApiProvider,
+    public loadingController: LoadingController) {
       this.getTransactions();
   }
 
   getTransactions() {
-    this.transactionApi.getTransactions()
-    .then(data => {
-      this.transactions = data;
-      console.log(this.transactions);
+    let loader = this.loadingController.create({
+      content: 'Getting transaction data...'
+    });
+
+    loader.present().then(() => {
+      this.transactionApi.getTransactions()
+      .then(data => {
+        this.transactions = data;
+        loader.dismiss();
+      });
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TransactionsPage');
   }
 
   itemSelected(item) {
-    console.log(item);
     this.navCtrl.push('TransactionDetailPage', { id: item })
   }
 

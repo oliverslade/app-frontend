@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { TransactionsApiProvider } from '../../providers/transactions-api/transactions-api';
 
@@ -19,36 +19,46 @@ export class HomePage {
   constructor(
     private auth: AuthService,
     public nav: NavController,
-    public transactionApi: TransactionsApiProvider) {
+    public transactionApi: TransactionsApiProvider,
+    public loadingController: LoadingController) {
 
       this.getUserDetails();
       this.getAccountSummary();
   }
 
   getUserDetails() {
-    this.transactionApi.getUserDetails()
-    .then(data => {
-      this.userDetails = data;
-      //console.log(this.userDetails.fullname);
+    let loader = this.loadingController.create({
+      content: 'Getting account data...'
+    });
+
+    loader.present().then(() => {
+      this.transactionApi.getUserDetails()
+      .then(data => {
+        this.userDetails = data;
+        loader.dismiss();
+      });
     });
   }
 
   getAccountSummary() {
-    this.transactionApi.getAccountSummary()
-    .then(data => {
-      this.accountSummary = data;
-      //console.log(this.userDetails.fullname);
+    let loader = this.loadingController.create({
+      content: 'Getting account data...'
+    });
+
+    loader.present().then(() => {
+      this.transactionApi.getAccountSummary()
+      .then(data => {
+        this.accountSummary = data;
+        loader.dismiss();
+      });
     });
   }
 
   ionViewCanEnter(): Boolean {
-    //return this.auth.authenticated();
     return true;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-    // Grab data - http://35.234.115.241/transactions
     
   }
 
