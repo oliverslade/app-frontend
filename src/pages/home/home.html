@@ -1,27 +1,17 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Dashboard
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-
-  <ion-list-header *ngIf="auth.getEmail()">{{auth.getEmail()}}</ion-list-header>
-
-  <ion-item (click)="logout()" *ngIf="auth.authenticated">
-    <ion-icon name="log-out" item-left></ion-icon>
-    Log out
-  </ion-item>
-    
-  <ion-item (click)="login()" *ngIf="!auth.authenticated">
-    <ion-icon name="log-in" item-left></ion-icon>
-    Log in
-  </ion-item>
+  
+  <ion-list inset>
+    <button ion-item *ngFor="let item of data; let i = index" (click)="itemSelected(i)">
+      {{ item.description }}
+    </button> 
+  </ion-list>
 
 </ion-content>

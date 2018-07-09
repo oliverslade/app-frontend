@@ -31,19 +31,21 @@ export class MyApp {
       this.splashScreen.hide();
     });
 
-    this.auth.afAuth.authState
-    .subscribe(
-      user => {
-        if (user) {
-          this.rootPage = 'HomePage';
-        } else {
-          this.rootPage = 'LoginPage';
-        }
-      },
-      () => {
-        this.rootPage = 'LoginPage';
-      }
-    );
+    // this.auth.afAuth.authState
+    // .subscribe(
+    //   user => {
+    //     if (user) {
+    //       this.rootPage = 'HomePage';
+    //     } else {
+    //       this.rootPage = 'LoginPage';
+    //     }
+    //   },
+    //   () => {
+    //     this.rootPage = 'LoginPage';
+    //   }
+    // );
+
+    this.rootPage = 'LoginPage';
   }
 
 }

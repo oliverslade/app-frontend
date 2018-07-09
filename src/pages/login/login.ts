@@ -58,23 +58,25 @@ export class LoginPage {
   }
 
   public login() {
-    this.showLoading()
+    //this.showLoading()
 
-    let data = this.loginForm.value;
+    // let data = this.loginForm.value;
 
-		if (!data.email) {
-			return;
-    }
+		// if (!data.email) {
+		// 	return;
+    // }
     
-    let credentials = { 
-      email: data.email,
-      password: data.password
-    };
+    // let credentials = { 
+    //   email: data.email,
+    //   password: data.password
+    // };
 
-    this.auth.signInWithEmail(credentials).then(
-      () => this.nav.setRoot('HomePage'),
-      error => this.showError(error)
-    );
+    // this.auth.signInWithEmail(credentials).then(
+    //   () => this.nav.setRoot('HomePage'),
+    //   error => this.showError(error)
+    // );
+    console.log("Navigate to home page.")
+    this.nav.setRoot('HomePage')
   }
 
   loginWithGoogle() {

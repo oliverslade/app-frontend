@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http'; 
+
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -11,6 +13,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { ValidatorProvider } from '../providers/validator/validator';
+import { TransactionsApiProvider } from '../providers/transactions-api/transactions-api';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { ValidatorProvider } from '../providers/validator/validator';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,7 +35,9 @@ import { ValidatorProvider } from '../providers/validator/validator';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    ValidatorProvider
+    ValidatorProvider,
+    TransactionsApiProvider,
+    HttpClient
   ]
 })
 export class AppModule {}
